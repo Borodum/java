@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">java</string>
+    <string name="app_name">Time Manager</string>
+    <string name="back">↩</string>
+    <string name="describe">описание:</string>
+    <string name="complete">завершить</string>
+    <string name="change">изменить</string>
+    <string name="close">отменить</string>
+    <string name="add">добавить</string>
+    <string name="hide">скрыть</string>
+    <string name="dataHint">дд.мм.гггг</string>
 </resources>

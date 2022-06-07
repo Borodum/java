@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@color/light_grey1">
+
+    <RelativeLayout
+        android:id="@+id/upPart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/yellow"
+        app:layout_constraintBaseline_toTopOf="parent">
+        <Button
+            android:id="@+id/back"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/back"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:layout_alignParentStart="true"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:textColor="@color/black"
+        android:id="@+id/head"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Название"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/upPart"/>
+
+    <TextView
+        android:id="@+id/begin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/head"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:text="begin data"
+        android:layout_margin="10dp"/>
+
+    <TextView
+        android:id="@+id/end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/begin"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:text="end data"
+        android:layout_margin="10dp"/>
+
+    <TextView
+        android:id="@+id/priority"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/end"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:text="priority"
+        android:layout_margin="10dp"/>
+
+    <TextView
+        android:id="@+id/category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/priority"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:text="category"
+        android:layout_margin="10dp"/>
+
+    <TextView
+        android:textColor="@color/black"
+        android:id="@+id/describe_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/category"
+        android:text="@string/describe"
+        android:textSize="30sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"/>
+
+    <TextView
+        android:id="@+id/describe"
+        android:layout_width="match_parent"
+        android:layout_height="@android:dimen/thumbnail_height"
+        android:background="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/describe_text"
+        android:textColor="@color/black"
+        android:text="какой-то комментарий к заданию"
+        android:layout_margin="10dp"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/buttonPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/yellow">
+
+        <com.google.android.material.button.MaterialButton
+            app:cornerRadius="15dp"
+            android:backgroundTint="@color/red"
+            android:id="@+id/del_but"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            app:layout_constraintStart_toStartOf="@id/buttonPanel"
+            app:layout_constraintEnd_toStartOf="@id/change_but"
+            android:text="@string/close"
+            tools:ignore="MissingConstraints"/>
+
+        <com.google.android.material.button.MaterialButton
+            app:cornerRadius="15dp"
+            android:backgroundTint="@color/grey"
+            android:id="@+id/change_but"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            app:layout_constraintEnd_toEndOf="@id/buttonPanel"
+            app:layout_constraintStart_toStartOf="@id/buttonPanel"
+            android:text="@string/change"
+            tools:ignore="MissingConstraints"/>
+
+        <com.google.android.material.button.MaterialButton
+            app:cornerRadius="15dp"
+            android:backgroundTint="@color/green"
+            android:id="@+id/solved_but"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            app:layout_constraintStart_toEndOf="@id/change_but"
+            app:layout_constraintEnd_toEndOf="@id/buttonPanel"
+            android:text="@string/complete"
+            tools:ignore="MissingConstraints" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

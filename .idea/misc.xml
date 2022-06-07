@@ -3,8 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Batraz/AndroidStudioProjects/java/app/src/main/res/layout/activity_main.xml" value="0.17255434782608695" />
-        <entry key="..\:/Users/Batraz/AndroidStudioProjects/java/app/src/main/res/layout/data_item.xml" value="0.2825520833333333" />
+        <entry key="..\:/Users/Batraz/AndroidStudioProjects/java/app/src/main/res/drawable/background_for_button.xml" value="0.2435" />
+        <entry key="..\:/Users/Batraz/AndroidStudioProjects/java/app/src/main/res/drawable/inset.xml" value="0.1365" />
+        <entry key="..\:/Users/Batraz/AndroidStudioProjects/java/app/src/main/res/layout/activity_add.xml" value="0.264" />
+        <entry key="..\:/Users/Batraz/AndroidStudioProjects/java/app/src/main/res/layout/activity_item.xml" value="0.2" />
+        <entry key="..\:/Users/Batraz/AndroidStudioProjects/java/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/Batraz/AndroidStudioProjects/java/app/src/main/res/layout/activity_statistic.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Batraz/AndroidStudioProjects/java/app/src/main/res/layout/category_fragment.xml" value="0.264" />
+        <entry key="..\:/Users/Batraz/AndroidStudioProjects/java/app/src/main/res/layout/data_item.xml" value="0.4" />
+        <entry key="..\:/Users/Batraz/AndroidStudioProjects/java/app/src/main/res/layout/fragment_category_fragment.xml" value="0.4" />
         <entry key="..\:/Users/Batraz/AndroidStudioProjects/java/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.124" />
       </map>
     </option>

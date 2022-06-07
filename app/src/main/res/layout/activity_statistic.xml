@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/upPart1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/yellow"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBaseline_toTopOf="parent">
+        <Button
+            android:id="@+id/back"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/back"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:layout_alignParentStart="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/text_all"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Всего: "
+        android:textSize="25sp"
+        android:textColor="@color/black"
+        android:layout_margin="15dp"
+        app:layout_constraintTop_toBottomOf="@id/upPart1"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/text_comp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Выполнено: "
+        android:textSize="25sp"
+        android:textColor="@color/black"
+        android:layout_margin="15dp"
+        app:layout_constraintTop_toBottomOf="@id/text_all"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/text_canceled"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Отменено: "
+        android:textSize="25sp"
+        android:textColor="@color/black"
+        android:layout_margin="15dp"
+        app:layout_constraintTop_toBottomOf="@id/text_comp"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/text_failed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Не выполнено: "
+        android:textSize="25sp"
+        android:textColor="@color/black"
+        android:layout_margin="15dp"
+        app:layout_constraintTop_toBottomOf="@id/text_canceled"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/text_active"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Активны: "
+        android:textSize="25sp"
+        android:textColor="@color/black"
+        android:layout_margin="15dp"
+        app:layout_constraintTop_toBottomOf="@id/text_failed"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
