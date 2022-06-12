@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -84,7 +86,12 @@ public class AddActivity extends AppCompatActivity {
                 //dataItem.priority = Math.min(20, Integer.parseInt(priority.getText().toString()));
                 EditText description = findViewById(R.id.et5);
                 //dataItem.description = description.getText().toString();
-                try {
+                if(head.getText().toString().equals("")
+                || begin.getText().toString().equals("")
+                || end.getText().toString().equals("")
+                || priority.getText().toString().equals("")){
+                        Toast.makeText(getApplicationContext(), "Некоторые обязательные поля не заполнены", Toast.LENGTH_SHORT).show();}
+                else{
                     dataItem = Form.make_insert_data(
                             head.getText().toString(),
                             begin.getText().toString(),
@@ -96,7 +103,8 @@ public class AddActivity extends AppCompatActivity {
                         Toast.makeText(AddActivity.this, "Неверный формат даты", Toast.LENGTH_SHORT).show();
                     } else if (Form.data_string_to_int(dataItem.end_data) < Form.data_string_to_int(dataItem.begin_data)) {
                         Toast.makeText(AddActivity.this, "Несоответствие дат \n начало задачи позже срока завершения", Toast.LENGTH_SHORT).show();
-                    } else {
+                    }
+                    else {
                         if(from){
                             Intent returnIntent = new Intent();
                             returnIntent.putExtra("head", dataItem.heading);
@@ -112,7 +120,7 @@ public class AddActivity extends AppCompatActivity {
                         finish();
                     }
                 }
-                catch (NullPointerException e){Toast.makeText(getApplicationContext(),"Не заполнены обязательные поля",Toast.LENGTH_SHORT).show();}
+                //catch (NullPointerException e){Toast.makeText(getApplicationContext(),"Не заполнены обязательные поля",Toast.LENGTH_SHORT).show();}
             }
         });
         Button button_back = findViewById(R.id.back);
@@ -210,15 +218,27 @@ public class AddActivity extends AppCompatActivity {
         db.insert(DataDataBaseHelper.TABLE_NAME, null, cv);}
     void back_to_cat_db(){
         //Toast.makeText(getApplicationContext(), Integer.toString(spinnerList.size()),Toast.LENGTH_SHORT).show();
+        cat_db = cat_helper.getReadableDatabase();
+        Cursor cursor = cat_db.rawQuery("SELECT * FROM "+CategoryDataBaseHelper.TABLE_NAME, null);
+        cursor.moveToFirst();
+        ArrayList<String> prom = new ArrayList<>();
+        for(int i=1;i<cursor.getCount()+1;i++){
+            prom.add(cursor.getString(1));cursor.moveToNext();
+        }
+        cursor.close();
         for(String s: spinnerList){
+            if(!prom.contains(s)){
             ContentValues cv = new ContentValues();
             cv.put(CategoryDataBaseHelper.CATEGORY, s);
-            cat_db.insert(CategoryDataBaseHelper.TABLE_NAME, null, cv);
+
+            cat_db.insert(CategoryDataBaseHelper.TABLE_NAME, null, cv);}
+            }
         }
-    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         back_to_cat_db();
+
     }
 }
