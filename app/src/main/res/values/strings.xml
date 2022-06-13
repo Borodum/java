@@ -8,4 +8,8 @@
     <string name="add">добавить</string>
     <string name="hide">скрыть</string>
     <string name="dataHint">дд.мм.гггг</string>
+    <string name="delete">удалить</string>
+    <string name="del_only_useless">
+        Вы можете удалить только категории, не используемые активными заданиями
+    </string>
 </resources>

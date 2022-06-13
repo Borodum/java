@@ -24,6 +24,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
 import java.util.EmptyStackException;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class AddActivity extends AppCompatActivity {
 
@@ -34,6 +36,11 @@ public class AddActivity extends AppCompatActivity {
     SQLiteDatabase cat_db;
 
     public static ArrayList<String> spinnerList;
+
+    public static ArrayList<String> spinnerDelList;
+    public static ArrayList<String> del_per_session;
+    public static TreeMap<String, Integer> tm;
+
     Button button;
     String category;
     DataItem dataItem=new DataItem();
@@ -132,7 +139,6 @@ public class AddActivity extends AppCompatActivity {
         });
 
         Button catAdd = findViewById(R.id.catAdd);
-
         catAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,6 +151,21 @@ public class AddActivity extends AppCompatActivity {
                 ft.commit();
             }
         });
+
+        Button catDel = findViewById(R.id.catDel);
+        catDel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = null;
+                fragment = new DeleteUselessCategoryFragment();
+                FragmentManager fm = getSupportFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                ft.replace(R.id.fragment, fragment);
+                ft.addToBackStack("tag2");
+                ft.commit();
+            }
+        });
+
         if(from){
             DataItem dataItem = new DataItem();
             dataItem.heading = getIntent().getStringExtra("head");
@@ -170,12 +191,27 @@ public class AddActivity extends AppCompatActivity {
     }
     void make_spinner(){
         spinnerList  = new ArrayList<>();
+        spinnerDelList = new ArrayList<>();
+        del_per_session = new ArrayList<>();
+        tm = new TreeMap<>();
         cat_db = cat_helper.getReadableDatabase();
         Cursor cursor = cat_db.rawQuery("SELECT * FROM "+CategoryDataBaseHelper.TABLE_NAME, null);
+        db = db_helper.getReadableDatabase();
+        Cursor cursor2 = db.rawQuery("SELECT * FROM " + DataDataBaseHelper.TABLE_NAME +" WHERE visible=1", null);
+        ArrayList<String> prom = new ArrayList<>();
+        cursor2.moveToFirst();
+        for(int i=1;i<cursor2.getCount()+1;i++){
+            prom.add(cursor2.getString(6));
+            cursor2.moveToNext();
+        }
+        cursor2.close();
         //Toast.makeText(getApplicationContext(), Integer.toString(cursor.getCount()),Toast.LENGTH_SHORT).show();
         cursor.moveToFirst();
         for(int i=1;i<cursor.getCount()+1;i++){
             spinnerList.add(cursor.getString(1));
+            tm.put(cursor.getString(1), cursor.getInt(0));
+            if(!prom.contains(cursor.getString(1)) &&
+                    !cursor.getString(1).equals(CategoryDataBaseHelper.NON_CATEGORY)){spinnerDelList.add(cursor.getString(1));}
             cursor.moveToNext();
         }
         cursor.close();
@@ -233,12 +269,19 @@ public class AddActivity extends AppCompatActivity {
 
             cat_db.insert(CategoryDataBaseHelper.TABLE_NAME, null, cv);}
             }
+        del_cat();
+        }
+        void del_cat(){
+        for (String catForDel: del_per_session) {
+            cat_db.delete(CategoryDataBaseHelper.TABLE_NAME, DataDataBaseHelper.ID + " = ?",new String[]{String.valueOf(tm.get(catForDel))});
+            }
         }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         back_to_cat_db();
+        del_cat();
 
     }
 }
